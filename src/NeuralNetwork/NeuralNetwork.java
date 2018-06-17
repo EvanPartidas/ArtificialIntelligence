@@ -137,7 +137,7 @@ public class NeuralNetwork {
 	}
 	//Construct with all parameters
 	public NeuralNetwork(int inputs,int hiddenLayers,int hiddenNeurons,int outputs, boolean[] activates){
-		construct(inputs, hiddenLayers, hiddenNeurons, outputs, actives);
+		construct(inputs, hiddenLayers, hiddenNeurons, outputs, activates);
 	}
 	/*
 	 * @param factor - mutation factor (Chance of weight being mutated)
@@ -266,7 +266,6 @@ public class NeuralNetwork {
 				n.weightDeltas[k]=n.value()*outputs[k].getError();
 			}
 			n.setError(sum*n.derivative(n.value(),true));
-			System.out.println(n.getError()+" dit "+n.value());
 		}
 		
 		//Hidden Layers
@@ -279,8 +278,6 @@ public class NeuralNetwork {
 					n.weightDeltas[k]=hidden[i+1][k].getError()*n.value();
 				}
 				n.setError(sum*n.derivative(n.value(),true));
-				if(i==0)
-					System.out.println(n.getError()+" lit "+n.value());
 			}
 		}
 		
@@ -297,7 +294,6 @@ public class NeuralNetwork {
 				n.weightDeltas[j]=h.getError()*n.value();
 				
 			}
-			System.out.println(sum);
 			n.setError(sum);
 			inputerror[i]=n.getError();
 		}
